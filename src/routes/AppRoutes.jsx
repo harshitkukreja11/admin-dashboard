@@ -9,15 +9,16 @@ import Dashboard from '../pages/Dashboard';
 import Products from '../pages/Products';
 import ProductForm from '../pages/ProductForm';
 import ProductDetails from '../pages/ProductDetails';
-import Chat from '../pages/Chat';
 import Profile from '../pages/Profile';
-import Settings from '../pages/Settings';
+import Settings from "../pages/Settings";
+
 import Error404 from '../pages/Error404';
 import Error500 from '../pages/Error500';
 import ComingSoon from '../pages/ComingSoon';
 
 
 import { useSelector } from 'react-redux';
+import ChatPage from '../pages/chat/ChatPage';
 
 
 const PrivateRoute = ({ children }) => {
@@ -40,9 +41,9 @@ return (
 <Route path="products" element={<Products/>} />
 <Route path="products/new" element={<ProductForm/>} />
 <Route path="products/:id" element={<ProductDetails/>} />
-<Route path="chat" element={<Chat/>} />
 <Route path="profile" element={<Profile/>} />
-<Route path="settings" element={<Settings/>} />
+<Route path="/settings" element={<Settings/>} />
+<Route path="/chat" element={<ChatPage />} />
 </Route>
 
 
