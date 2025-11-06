@@ -27,8 +27,7 @@ export default function AppNavbar() {
 
   // 🔹 Replace with your own hosted image or avatar URL
   const profileImage =
-  "https:encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS1BSBo15LosDJiFbR7vT7daDJEmsnatXaxAzcN67NE_Ld4L0ymS0X0dM"
-     // Example placeholder avatar
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThpUgC7dkHYV0KD26Ujw5u83EI43dOZqvABg&s"; // Example placeholder avatar
 
   return (
     <Navbar
