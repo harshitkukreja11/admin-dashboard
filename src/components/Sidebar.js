@@ -1,57 +1,66 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
+import { FaTachometerAlt, FaBoxOpen, FaComments, FaUser, FaCog } from "react-icons/fa";
+import "./Sidebar.css";
 
 export default function Sidebar() {
   const { theme } = useContext(ThemeContext);
+  const location = useLocation();
 
-  const sidebarStyle =
-    theme === "dark"
-      ? { backgroundColor: "#222", color: "white" }
-      : { backgroundColor: "#f8f9fa", color: "black" };
+  const isActive = (path) => location.pathname === path;
 
   return (
-    <div style={{ ...sidebarStyle, width: "250px", minHeight: "100vh" }} className="p-3">
-      <h5 className="mb-4">Admin Panel</h5>
-      <ul className="list-unstyled">
-        <li className="mb-2">
+    <div
+      className={`sidebar-container ${
+        theme === "dark" ? "sidebar-dark" : "sidebar-light"
+      }`}
+    >
+      {/* Logo / Header */}
+      <div className="sidebar-header mb-4 text-center">
+        <h4 className="fw-bold text-gradient">Admin Panel</h4>
+      </div>
+
+      {/* Navigation */}
+      <ul className="list-unstyled sidebar-menu">
+        <li>
           <Link
             to="/"
-            className={theme === "dark" ? "text-white text-decoration-none" : "text-dark text-decoration-none"}
+            className={`sidebar-link ${isActive("/") ? "active" : ""}`}
           >
-            🏠 Dashboard
+            <FaTachometerAlt className="me-2" /> Dashboard
           </Link>
         </li>
-        <li className="mb-2">
+        <li>
           <Link
             to="/products"
-            className={theme === "dark" ? "text-white text-decoration-none" : "text-dark text-decoration-none"}
+            className={`sidebar-link ${isActive("/products") ? "active" : ""}`}
           >
-            📦 Products
+            <FaBoxOpen className="me-2" /> Products
           </Link>
         </li>
-        <li className="mb-2">
+        <li>
           <Link
             to="/chat"
-            className={theme === "dark" ? "text-white text-decoration-none" : "text-dark text-decoration-none"}
+            className={`sidebar-link ${isActive("/chat") ? "active" : ""}`}
           >
-            💬 Chat
+            <FaComments className="me-2" /> Chat
           </Link>
         </li>
-        <li className="mb-2">
+        <li>
           <Link
             to="/profile"
-            className={theme === "dark" ? "text-white text-decoration-none" : "text-dark text-decoration-none"}
+            className={`sidebar-link ${isActive("/profile") ? "active" : ""}`}
           >
-            👤 Profile
+            <FaUser className="me-2" /> Profile
           </Link>
         </li>
-        <li className="mb-2">
+        <li>
           <Link
             to="/settings"
-            className={theme === "dark" ? "text-white text-decoration-none" : "text-dark text-decoration-none"}
+            className={`sidebar-link ${isActive("/settings") ? "active" : ""}`}
           >
-            ⚙️ Settings
+            <FaCog className="me-2" /> Settings
           </Link>
         </li>
       </ul>

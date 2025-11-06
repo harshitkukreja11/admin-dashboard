@@ -1,38 +1,63 @@
-.App {
-  text-align: center;
+.gradient-blue {
+  background: linear-gradient(135deg, #007bff, #00c6ff);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.gradient-green {
+  background: linear-gradient(135deg, #28a745, #85ef47);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.gradient-orange {
+  background: linear-gradient(135deg, #ff8c00, #ffc107);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.gradient-purple {
+  background: linear-gradient(135deg, #6f42c1, #d63384);
 }
 
-.App-link {
-  color: #61dafb;
+.glass-card {
+  border-radius: 15px;
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-@keyframes App-logo-spin {
+.hover-glow:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.animate-fadein {
+  animation: fadein 0.8s ease;
+}
+
+@keyframes fadein {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(10px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+
+.text-purple {
+  color: #6f42c1 !important;
+}
+/*Admin layout*/
+/* Smooth sidebar link hover */
+.sidebar a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding-left: 12px;
+  transition: all 0.3s ease;
+}
+
+/* Main card hover pop */
+.main-card {
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.main-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+

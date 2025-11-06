@@ -2,18 +2,18 @@ import React, { createContext, useState, useEffect } from "react";
 
 export const ThemeContext = createContext();
 
-export function ThemeProvider({ children }) {
+export const ThemeProvider = ({ children }) => {
+  // Check for saved theme or default to 'light'
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-  // Apply theme class to <body>
   useEffect(() => {
-    document.body.className =
-      theme === "dark" ? "bg-dark text-white" : "bg-light text-dark";
+    // Apply theme to <body> tag for global styling
+    document.body.className = theme === "dark" ? "bg-dark text-light" : "bg-light text-dark";
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  const toggleTheme = (newTheme) => {
-    setTheme(newTheme);
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
   return (
@@ -21,4 +21,4 @@ export function ThemeProvider({ children }) {
       {children}
     </ThemeContext.Provider>
   );
-}
+};

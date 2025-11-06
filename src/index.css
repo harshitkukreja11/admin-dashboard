@@ -1,13 +1,31 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body.bg-dark {
+  background-color: #1e1e2f !important;
+  color: #f1f1f1 !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body.bg-light {
+  background-color: #f8f9fa !important;
+  color: #000 !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Make cards, inputs, and tables follow theme */
+.card,
+input,
+textarea,
+.table {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.bg-dark .card {
+  background-color: #2a2a40 !important;
+  color: #fff !important;
+}
+
+body.bg-dark input,
+body.bg-dark textarea {
+  background-color: #333 !important;
+  color: #fff !important;
+  border-color: #444 !important;
 }

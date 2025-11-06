@@ -1,0 +1,92 @@
+.app-navbar {
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.search-form input {
+  width: 200px;
+  border-radius: 20px;
+  border: 1px solid #dee2e6;
+  transition: width 0.3s ease;
+}
+
+.search-form input:focus {
+  width: 260px;
+  border-color: #007bff;
+}
+
+.hover-icon {
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.hover-icon:hover {
+  color: #007bff;
+  transform: scale(1.15);
+}
+
+.theme-toggle-btn {
+  border: none;
+  background-color: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.navbar-dark .theme-toggle-btn {
+  background-color: #343a40;
+}
+
+.user-dropdown {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.user-dropdown:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+}
+.hover-icon {
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.hover-icon:hover {
+  color: #007bff !important;
+  transform: scale(1.1);
+}
+
+.user-dropdown:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+}
+
+.search-form input:focus {
+  border-color: #007bff !important;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3) !important;
+}
+
+.theme-toggle-btn:hover {
+  transform: rotate(20deg);
+  transition: 0.3s ease;
+}
+.profile-avatar {
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.profile-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+}
+
+.hover-icon:hover {
+  color: #007bff !important;
+  transform: scale(1.1);
+  transition: all 0.2s ease;
+}
+
