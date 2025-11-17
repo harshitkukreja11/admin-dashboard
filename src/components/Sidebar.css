@@ -1,4 +1,6 @@
-/* ===== Sidebar Base ===== */
+/* ===========================
+   SIDEBAR BASE
+=========================== */
 .sidebar-container {
   width: 250px;
   min-height: 100vh;
@@ -10,21 +12,23 @@
   top: 0;
 }
 
-/* ===== Light Mode ===== */
+/* Light Mode */
 .sidebar-light {
   background: #ffffff;
   color: #222;
   border-right: 1px solid #dee2e6;
 }
 
-/* ===== Dark Mode ===== */
+/* Dark Mode */
 .sidebar-dark {
   background: #1e1e2f;
   color: #f1f1f1;
   border-right: 1px solid #333;
 }
 
-/* ===== Header ===== */
+/* ===========================
+   HEADER
+=========================== */
 .sidebar-header h4 {
   font-size: 1.4rem;
   font-weight: 700;
@@ -36,7 +40,9 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* ===== Navigation ===== */
+/* ===========================
+   NAVIGATION
+=========================== */
 .sidebar-menu {
   padding: 0;
   list-style: none;
@@ -54,7 +60,7 @@
   transition: all 0.2s ease-in-out;
 }
 
-/* Hover effects */
+/* Hover */
 .sidebar-link:hover {
   background: rgba(0, 123, 255, 0.1);
   color: #007bff;
@@ -68,12 +74,14 @@
   box-shadow: 0 3px 10px rgba(0, 123, 255, 0.3);
 }
 
-/* ===== Icons ===== */
+/* Icons */
 .sidebar-link svg {
   font-size: 1rem;
 }
 
-/* ===== Dark mode overrides ===== */
+/* ===========================
+   DARK MODE OVERRIDES
+=========================== */
 .sidebar-dark .sidebar-link:hover {
   background: rgba(255, 255, 255, 0.1);
   color: #00c6ff;
@@ -83,18 +91,85 @@
   background: linear-gradient(45deg, #00c6ff, #007bff);
   color: #fff;
 }
+
+/* ===========================
+   MOBILE RESPONSIVE
+=========================== */
 @media (max-width: 992px) {
+  /* Sidebar becomes LEFT drawer */
   .sidebar-container {
     position: fixed;
     z-index: 1050;
-    left: -250px;
+    left: -260px;
     top: 0;
     height: 100vh;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.35s ease-in-out;
+    border-right: none;
   }
 
+  /* When .show class is added, slide in */
   .sidebar-container.show {
     left: 0;
   }
 }
 
+/* Optional – smooth scrollbar */
+.sidebar-container::-webkit-scrollbar {
+  width: 5px;
+}
+.sidebar-container::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 6px;
+}
+.sidebar-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+/* ===========================
+   MOBILE TOGGLE BUTTON
+=========================== */
+.sidebar-toggle-btn {
+  display: none;
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1100;
+  font-size: 22px;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+/* Close button inside sidebar */
+.sidebar-close-btn {
+  display: none;
+  font-size: 22px;
+  background: transparent;
+  border: none;
+  color: inherit;
+  margin-bottom: 15px;
+}
+
+.sidebar-backdrop {
+  display: none;
+}
+
+/* Show on Mobile */
+@media (max-width: 992px) {
+  .sidebar-toggle-btn {
+    display: block;
+  }
+
+  .sidebar-close-btn {
+    display: block;
+  }
+
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1040;
+  }
+}

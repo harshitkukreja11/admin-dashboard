@@ -1,10 +1,13 @@
 .app-navbar {
   backdrop-filter: blur(8px);
   transition: all 0.3s ease;
+  position: relative;
+  z-index: 1000;
 }
 
+/* 🔹 Search Form */
 .search-form input {
-  width: 200px;
+  width: 220px;
   border-radius: 20px;
   border: 1px solid #dee2e6;
   transition: width 0.3s ease;
@@ -12,44 +15,11 @@
 
 .search-form input:focus {
   width: 260px;
-  border-color: #007bff;
+  border-color: #007bff !important;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3) !important;
 }
 
-.hover-icon {
-  cursor: pointer;
-  transition: color 0.3s ease, transform 0.2s ease;
-}
-
-.hover-icon:hover {
-  color: #007bff;
-  transform: scale(1.15);
-}
-
-.theme-toggle-btn {
-  border: none;
-  background-color: #f8f9fa;
-  transition: all 0.3s ease;
-}
-
-.theme-toggle-btn:hover {
-  background-color: #007bff;
-  color: #fff;
-}
-
-.navbar-dark .theme-toggle-btn {
-  background-color: #343a40;
-}
-
-.user-dropdown {
-  cursor: pointer;
-  padding: 5px 10px;
-  border-radius: 20px;
-  transition: all 0.3s ease;
-}
-
-.user-dropdown:hover {
-  background-color: rgba(0, 123, 255, 0.1);
-}
+/* 🔹 Navbar Icons */
 .hover-icon {
   cursor: pointer;
   transition: transform 0.2s ease, color 0.3s ease;
@@ -60,21 +30,37 @@
   transform: scale(1.1);
 }
 
-.user-dropdown:hover {
-  opacity: 0.9;
-  transform: scale(1.02);
-  transition: all 0.2s ease;
-}
-
-.search-form input:focus {
-  border-color: #007bff !important;
-  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3) !important;
+/* 🔹 Theme Toggle */
+.theme-toggle-btn {
+  border: none;
+  background-color: #f8f9fa;
+  transition: all 0.3s ease;
 }
 
 .theme-toggle-btn:hover {
+  background-color: #007bff;
+  color: #fff;
   transform: rotate(20deg);
-  transition: 0.3s ease;
 }
+
+.navbar-dark .theme-toggle-btn {
+  background-color: #343a40;
+}
+
+/* 🔹 User Dropdown */
+.user-dropdown {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.user-dropdown:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+  transform: scale(1.02);
+}
+
+/* 🔹 Profile Avatar */
 .profile-avatar {
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
@@ -84,9 +70,102 @@
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
 }
 
-.hover-icon:hover {
-  color: #007bff !important;
-  transform: scale(1.1);
-  transition: all 0.2s ease;
+/* =======================================
+   📱 MOBILE-FIRST IMPROVEMENTS
+   ======================================= */
+
+/* 🔹 Force icons + search bar to show on top in mobile */
+@media (max-width: 576px) {
+  .navbar-top-section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-icons-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* Search bar takes full width below icons */
+  .search-form-wrapper {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .search-form input {
+    width: 100% !important;
+    font-size: 14px;
+  }
+
+  .navbar-brand {
+    font-size: 1rem !important;
+  }
+
+  .user-dropdown span {
+    display: none; /* hide name on mobile */
+  }
+
+  .theme-toggle-btn {
+    padding: 6px;
+  }
+
+  .profile-avatar {
+    width: 32px;
+    height: 32px;
+  }
 }
 
+/* =======================================
+   🍔 Hamburger Menu Animation
+   ======================================= */
+.navbar-toggler {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.navbar-toggler-icon {
+  width: 25px;
+  height: 2px;
+  background-color: #000;
+  display: block;
+  transition: 0.3s ease;
+  position: relative;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: "";
+  width: 25px;
+  height: 2px;
+  background-color: #000;
+  position: absolute;
+  left: 0;
+  transition: 0.3s ease;
+}
+
+.navbar-toggler-icon::before {
+  top: -7px;
+}
+
+.navbar-toggler-icon::after {
+  top: 7px;
+}
+
+/* When hamburger is active */
+.navbar-toggler.collapsed .navbar-toggler-icon {
+  background: transparent;
+}
+
+.navbar-toggler.collapsed .navbar-toggler-icon::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.navbar-toggler.collapsed .navbar-toggler-icon::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
