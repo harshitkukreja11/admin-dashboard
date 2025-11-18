@@ -12,7 +12,7 @@ export default function ChatPage() {
   ];
 
   return (
-    <div className="d-flex border rounded shadow-sm" style={{ height: "80vh" }}>
+    <div className="d-flex border rounded shadow-sm text-black" style={{ height: "80vh" }}>
       <ConversationList
         conversations={conversations}
         selectedChat={selectedChat}

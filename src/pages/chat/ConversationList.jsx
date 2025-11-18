@@ -14,7 +14,7 @@ export default function ConversationList({ conversations, selectedChat, onSelect
           onClick={() => onSelectChat(chat)}
           style={{ cursor: "pointer" }}
         >
-          <strong>{chat.name}</strong>
+          <strong >{chat.name}</strong>
           <p className="mb-0 small">{chat.lastMessage}</p>
         </div>
       ))}

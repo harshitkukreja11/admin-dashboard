@@ -1,17 +1,24 @@
 /* ===========================
-   SIDEBAR BASE
+   1. BASE LAYOUT (Desktop Default)
 =========================== */
 .sidebar-container {
   width: 250px;
-  min-height: 100vh;
+  /* Desktop: min-height allows it to grow if content is long */
+  min-height: 100vh; 
   display: flex;
   flex-direction: column;
   padding: 1.5rem 1rem;
   transition: all 0.3s ease;
+  
+  /* Sticky keeps it in view on desktop while scrolling main content */
   position: sticky;
   top: 0;
+  z-index: 1000;
 }
 
+/* ===========================
+   2. THEME STYLES
+=========================== */
 /* Light Mode */
 .sidebar-light {
   background: #ffffff;
@@ -27,11 +34,12 @@
 }
 
 /* ===========================
-   HEADER
+   3. HEADER & TYPOGRAPHY
 =========================== */
 .sidebar-header h4 {
   font-size: 1.4rem;
   font-weight: 700;
+  margin: 0;
 }
 
 .text-gradient {
@@ -41,135 +49,173 @@
 }
 
 /* ===========================
-   NAVIGATION
+   4. NAVIGATION LINKS
 =========================== */
 .sidebar-menu {
   padding: 0;
   list-style: none;
+  margin-top: 1rem;
 }
 
 .sidebar-link {
   display: flex;
   align-items: center;
-  padding: 10px 14px;
+  padding: 12px 15px;
   font-weight: 500;
   text-decoration: none;
   border-radius: 8px;
   color: inherit;
   margin-bottom: 8px;
   transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
 
-/* Hover */
+.sidebar-link svg {
+  font-size: 1.1rem;
+  /* Ensure icons have fixed width so text aligns perfectly */
+  min-width: 24px; 
+}
+
+/* Hover Effects */
 .sidebar-link:hover {
   background: rgba(0, 123, 255, 0.1);
   color: #007bff;
-  transform: translateX(3px);
+  transform: translateX(4px);
 }
 
-/* Active link */
+.sidebar-dark .sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #00c6ff;
+}
+
+/* Active/Current Link */
 .sidebar-link.active {
   background: linear-gradient(45deg, #007bff, #00bfff);
   color: white !important;
-  box-shadow: 0 3px 10px rgba(0, 123, 255, 0.3);
-}
-
-/* Icons */
-.sidebar-link svg {
-  font-size: 1rem;
-}
-
-/* ===========================
-   DARK MODE OVERRIDES
-=========================== */
-.sidebar-dark .sidebar-link:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #00c6ff;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
 }
 
 .sidebar-dark .sidebar-link.active {
   background: linear-gradient(45deg, #00c6ff, #007bff);
-  color: #fff;
 }
 
 /* ===========================
-   MOBILE RESPONSIVE
+   5. BUTTONS (Toggle & Close)
 =========================== */
-@media (max-width: 992px) {
-  /* Sidebar becomes LEFT drawer */
-  .sidebar-container {
-    position: fixed;
-    z-index: 1050;
-    left: -260px;
-    top: 0;
-    height: 100vh;
-    transition: all 0.35s ease-in-out;
-    border-right: none;
-  }
-
-  /* When .show class is added, slide in */
-  .sidebar-container.show {
-    left: 0;
-  }
-}
-
-/* Optional – smooth scrollbar */
-.sidebar-container::-webkit-scrollbar {
-  width: 5px;
-}
-.sidebar-container::-webkit-scrollbar-thumb {
-  background: #999;
-  border-radius: 6px;
-}
-.sidebar-container::-webkit-scrollbar-track {
-  background: transparent;
-}
-/* ===========================
-   MOBILE TOGGLE BUTTON
-=========================== */
+/* Toggle Button (Hamburger) */
 .sidebar-toggle-btn {
-  display: none;
+  display: none; /* Hidden on desktop */
   position: fixed;
-  top: 12px;
-  left: 12px;
+  top: 15px;
+  left: 15px;
   z-index: 1100;
-  font-size: 22px;
+  border: none;
   background: #007bff;
   color: white;
-  border: none;
-  padding: 8px 10px;
-  border-radius: 6px;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 0; /* Fixes icon vertical alignment */
 }
 
-/* Close button inside sidebar */
+/* Close Button (Inside Sidebar) */
 .sidebar-close-btn {
-  display: none;
-  font-size: 22px;
+  display: none; /* Hidden on desktop */
   background: transparent;
   border: none;
   color: inherit;
-  margin-bottom: 15px;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.sidebar-close-btn:hover {
+  transform: scale(1.1) rotate(90deg);
 }
 
-.sidebar-backdrop {
-  display: none;
-}
-
-/* Show on Mobile */
+/* ===========================
+   6. MOBILE RESPONSIVE (Logic Fix)
+=========================== */
 @media (max-width: 992px) {
+  
+  /* Show Mobile Buttons */
   .sidebar-toggle-btn {
     display: block;
   }
+  
+  /* Sidebar Logic - The "Drawer" */
+  .sidebar-container {
+    position: fixed;
+    /* CRITICAL FIX: Anchor top AND bottom to fill screen */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    
+    /* Remove min-height, let top/bottom handle height */
+    height: auto; 
+    width: 280px;
+    max-width: 85vw;
+    
+    /* Hide initially */
+    transform: translateX(-100%);
+    
+    z-index: 1050;
+    border-right: none;
+    box-shadow: none;
+    
+    /* Allow scrolling inside sidebar if menu is long */
+    overflow-y: auto; 
+  }
 
+  /* Open State */
+  .sidebar-container.show {
+    transform: translateX(0);
+    box-shadow: 10px 0 30px rgba(0,0,0,0.3);
+  }
+  
+  /* Show the close button only on mobile */
   .sidebar-close-btn {
     display: block;
   }
-
-  .sidebar-backdrop {
-    display: block;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.4);
-    z-index: 1040;
+  
+  /* Adjust header margin since close button is there */
+  .sidebar-header {
+    margin-top: 20px; 
   }
+}
+
+/* ===========================
+   7. BACKDROP (Overlay)
+=========================== */
+/* Since React mounts/unmounts this div, we use Animation */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0; /* top:0, right:0, bottom:0, left:0 */
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1040;
+  backdrop-filter: blur(2px); /* Nice glass effect */
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ===========================
+   8. SCROLLBAR STYLING
+=========================== */
+.sidebar-container::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+.sidebar-container::-webkit-scrollbar-track {
+  background: transparent;
 }
